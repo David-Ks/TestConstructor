@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{% include 'inc/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div id='borderBox' class="mt-4 mb-1" style="margin-left: 20px;">
+				<div class="row mt-1 g-3 align-items-center" style="margin-left: 20px;">
+					<div class="col-auto">
+						<label class="col-form-label"><h2>Tests</h2></label>
+				    </div>
+				</div>
+				<div class="container mb-2" style="max-width: 90%;">
+					{% for test in tests%}
+				        <a href="{% url 'testPage' test.name %}"><button id='' type="button" class="btn mt-2 btn-outline-primary">{{test.name}}</button></a>
+				    {% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+<div>
+{% endblock %}

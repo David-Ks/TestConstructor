@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{% include 'inc/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div id='borderBox' class="mt-4 mb-5" style="margin-left: 20px;">
+		<form method="post" action="{% url 'reg' %}" class="mt-4 mb-2" style="margin-left: 10px; margin-right: 10px;">
+			{% csrf_token %}
+			<div class="col-auto">
+				<label class="col-form-label"><h3>Registration</h3></label>
+		    </div>
+		    {{ form.as_p }}
+		    <div class="col-auto mb-2" style="max-width: 80%;">
+				<button id='testNameSearch' type="submit" class="btn mt-2 mb-1 btn-lg btn-outline-primary">Sign in</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

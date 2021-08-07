@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>{% block title%}TestHUB{% endblock %}</title>
+  </head>
+  <body>
+    <style type="text/css">
+
+      body {
+        background-color: #e6e6e6;
+        color: #004d4d;
+      }
+      .navbar {
+        margin-bottom:0px;
+        background: #ffffff;
+        font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+      }
+      #borderBox {
+        font-family: Bookman, URW Bookman L, serif;
+        border: 4px solid #ffffff;
+        background-color: #ffffff;
+        border-radius: 15px;
+        width: 70%;
+        height: auto;
+      }
+      input[type=text] {
+        border: 1px solid #0d6efd;
+        border-radius: 4px;
+      }
+
+    </style>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous">
+    </script>
+    {% block navbar%}{% endblock %}
+    {% block content%}{% endblock %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  </body>
+</html>

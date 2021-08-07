@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{% include 'inc/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col">
+
+	<div id='borderBox' class="mt-4 mb-1" style="margin-left: 20px;">
+		<div class="row mt-1 g-3 align-items-center" style="margin-left: 20px;">
+			<div class="col-auto">
+				<label class="col-form-label"><h1>Start creating your test now!</h1></label>
+		    </div>
+		    <div class="col-auto">
+				<a href="{% url 'create' %}"><button id='' type="button" class="btn mt-2 mb-1 btn-lg btn-outline-primary">Create</button></a>
+		    </div>
+		</div>
+		<hr>
+		<div class="row mt-1 g-3 align-items-center" style="margin-left: 20px;">
+			<div class="col-auto">
+				<label class="col-form-label"><h3>Tests :</h3></label>
+		    </div>
+		    <div class="container mb-2" style="max-width: 80%;">
+				<a href="{% url 'testList' %}"><button id='' type="button" class="btn mt-2 mb-1 btn-lg btn-outline-primary">Tests List</button></a>
+			</div>
+		</div>
+		<div class="row mt-1 g-3 align-items-center" style="margin-left: 20px;">
+			<form>
+				{% csrf_token %}
+				<div class="col-auto">
+					<label class="col-form-label"><h3>Search :</h3></label>
+			    </div>
+			    <div class="col-auto">
+					<input type="text" class="form-control" name='data' placeholder='Enter test name' style="max-width: 99%" id="testNameInput">
+			    </div>
+			    <div id="errorDiv"></div>
+			    <div class="col-auto mb-2" style="max-width: 80%;">
+					<button id='testNameSearch' type="button" class="btn mt-2 mb-1 btn-lg btn-outline-primary">Search</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id='borderBox' class="mt-4 mb-5" style="margin-left: 20px;">
+		<div class="row mt-1 g-3 align-items-center" style="margin-left: 20px;">
+			<div class="col-auto">
+				<label class="col-form-label"><h2>About Us</h2></label>
+		    </div>
+		</div>
+		<div class="row g-3 align-items-center" style="margin-left: 20px;">
+			<div class="col-auto">
+				<label class="col-form-label"><h4>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. By Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32...</h4></label>
+		    </div>
+		</div>
+		<div class="row mt-1 g-3 align-items-center" style="margin-left: 20px;">
+			<div class="col-auto">
+				<a href="{% url 'aboutus' %}"><button type="button" class="btn mt-2 mb-1 btn-outline-primary">Read more</button></a>
+			</div>
+		</div>
+	</div>
+
+	</div>
+<div>
+<script type="text/javascript">
+$('#testNameSearch').bind('click', function() {
+	let csrftoken = '{{ csrf_token }}';
+	var testNameInput = $('#testNameInput').val();
+	$.ajax({ 
+	    type: 'POST', 
+	    url: "{% url 'index' %}", 
+	    headers:{'X-CSRFToken':csrftoken},
+	    data: { data:  testNameInput}, 
+	    dataType: 'json',
+	    success: function (response) {
+	    	if (response != 'Error') {
+	    		$('#errorDiv').html('')
+	    		document.location.href = response;
+	    	} else {
+	    		$('#errorDiv').html(`
+	    			<div class="col-auto">
+						<label class="col-form-label" style='color: red;'>Error: Test name does not exist.</label>
+			    	</div>
+	    			`);
+	    	}
+	    }
+	});
+});
+
+</script>
+{% endblock %}
